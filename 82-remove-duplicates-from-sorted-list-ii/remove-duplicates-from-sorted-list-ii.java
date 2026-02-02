@@ -11,22 +11,24 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         Map<Integer,Integer> map = new LinkedHashMap<>();
-        while(head!=null){
-            if(map.containsKey(head.val)){
-                map.put(head.val,map.get(head.val)+1);
-            }else map.put(head.val,1);
-            head = head.next;
+        ListNode temp = head;
+        while(temp!=null){
+            if(map.containsKey(temp.val)){
+                map.put(temp.val,map.get(temp.val)+1);
+            }else map.put(temp.val,1);
+            temp = temp.next;
         }
+        // System.out.println(map);
         ListNode res = new ListNode(0);
-        ListNode temp = res;
-        for(Map.Entry El:map.entrySet()){
-            int key = (int)El.getKey();
-            int value = (int)El.getValue();
-            if(value==1){
-                ListNode newNode = new ListNode(key);
-                temp.next = newNode;
-                temp = newNode;
+        // res.next = null;
+        temp = res;
+        while(head!=null){
+            if(map.get(head.val)==1){
+                temp.next = head;
+                temp = temp.next;
             }
+            head = head.next;
+            temp.next = null;
         }
         return res.next;
 
