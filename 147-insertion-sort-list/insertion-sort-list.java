@@ -10,29 +10,25 @@
  */
 class Solution {
     public ListNode insertionSortList(ListNode head) {
-        ListNode sorted = null;
-        ListNode current= head;
-
-        while(current!=null){
-            ListNode next = current.next;
-            sorted = sortedIndex(sorted,current);
-            current = next;
+        ListNode sorted =null;
+        ListNode curr = head;
+        while(curr!=null){
+            ListNode temp = curr.next;
+            sorted = sortedIndex(sorted,curr);
+            curr = temp;
         }
-
         return sorted;
     }
 
     public static ListNode sortedIndex(ListNode sorted,ListNode newNode){
-        if (sorted == null || sorted.val >= newNode.val) {
+        if(sorted==null || newNode.val<sorted.val){
             newNode.next = sorted;
             return newNode;
-        } else {
-            ListNode current = sorted;
-            while (current.next != null && current.next.val < newNode.val) {
-                current = current.next;
-            }
-            newNode.next = current.next;
-            current.next = newNode;
+        }else{
+            ListNode curr = sorted;
+            while(curr.next!=null && curr.next.val<newNode.val)curr=curr.next;
+            newNode.next = curr.next;
+            curr.next = newNode;
             return sorted;
         }
     }
