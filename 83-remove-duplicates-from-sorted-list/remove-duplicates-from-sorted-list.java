@@ -14,14 +14,11 @@ class Solution {
         while(temp!=null){
             do{
                 if(temp.next!=null){
-                if(temp.val==temp.next.val){
-                    temp.next = temp.next.next ;
+                    if(temp.val==temp.next.val)temp.next=temp.next.next;
                 }
-            }
-            if(temp.next==null) break;
+                if(temp.next==null)break;
             }while(temp.val==temp.next.val);
-            
-            temp = temp.next;
+            temp=temp.next;
         }
         return head;
     }
