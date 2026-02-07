@@ -10,36 +10,19 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if(head==null || head.next==null)return head;
-
-
-        ListNode slow=head,fast=head.next;
-        while(fast!=null && fast.next!=null){
-            fast = fast.next.next;
-            slow = slow.next;
+        ListNode temp = head;
+        int i = 0;
+        List<Integer> list = new ArrayList<>();
+        while(temp!=null){
+            list.add(temp.val);
+            temp = temp.next;
         }
-        ListNode mid = slow.next;
-        slow.next = null;
-        ListNode left = sortList(head);
-        ListNode right = sortList(mid);
-
-        return merge(left,right);
-    }
-
-    public static ListNode merge(ListNode l1,ListNode l2){
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while(l1!=null && l2!=null){
-            if(l1.val<l2.val){
-                tail.next = l1;
-                l1 = l1.next;
-            }else{
-                tail.next = l2;
-                l2=l2.next;
-            }
-            tail = tail.next;
+        temp=head;
+        Collections.sort(list);
+        while(temp!=null){
+            temp.val = list.get(i++);
+            temp = temp.next;
         }
-        tail.next = (l1==null)?l2:l1;
-        return dummy.next;
+        return head;
     }
 }
