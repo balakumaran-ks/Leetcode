@@ -1,10 +1,6 @@
 class Solution:
     def bitwiseComplement(self, n: int) -> int:
-        b = bin(n)[2:]
-        res = ""
-        for i in range(len(b)):
-            if b[i]=='1':
-                res+='0'
-            else:
-                res+='1'
-        return int(res,2)
+        if n<=0:
+            return 1
+        b = len(bin(n)[2:])-bin(n)[2:].index('1')
+        return int(math.pow(2,b))-1-n if int(math.pow(2,b))-1-n>=0 else 0
