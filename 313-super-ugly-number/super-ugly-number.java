@@ -1,4 +1,5 @@
 class Solution {
+    //own code derived from coffee and ugly number editorial from leetcode (i first solved ugly numbers on my own)
     public int nthSuperUglyNumber(int n, int[] primes) {
         long[] uglyNums = new long[n];
         int[] primeId = new int[primes.length];
