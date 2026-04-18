@@ -41,18 +41,16 @@ class Solution {
 		}
 		int leftSum = 0;
 		int rightSum = 0;
+        int digitInd = node.val;
+			digits[digitInd] = digits[digitInd] ^ 1;
 		if (node.left != null) {
-			int digitInd = node.val;
-			digits[digitInd] = digits[digitInd] ^ 1;
 			leftSum = psudoHelper(node.left, digits);
-			digits[digitInd] = digits[digitInd] ^ 1;
+			
 		}
 		if (node.right != null) {
-			int digitInd = node.val;
-			digits[digitInd] = digits[digitInd] ^ 1;
 			rightSum = psudoHelper(node.right, digits);
-			digits[digitInd] = digits[digitInd] ^ 1;
 		}
+        digits[digitInd] = digits[digitInd] ^ 1;
 		return leftSum + rightSum;
 
 	}
