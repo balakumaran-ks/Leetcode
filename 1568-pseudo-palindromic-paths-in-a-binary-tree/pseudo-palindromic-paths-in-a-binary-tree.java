@@ -39,19 +39,12 @@ class Solution {
 				return 1;
 			return 0;
 		}
-		int leftSum = 0;
-		int rightSum = 0;
+		int sum = 0;
         int digitInd = node.val;
 			digits[digitInd] = digits[digitInd] ^ 1;
-		if (node.left != null) {
-			leftSum = psudoHelper(node.left, digits);
-			
-		}
-		if (node.right != null) {
-			rightSum = psudoHelper(node.right, digits);
-		}
+		sum = psudoHelper(node.left,digits) + psudoHelper(node.right,digits);
         digits[digitInd] = digits[digitInd] ^ 1;
-		return leftSum + rightSum;
+		return sum;
 
 	}
 
