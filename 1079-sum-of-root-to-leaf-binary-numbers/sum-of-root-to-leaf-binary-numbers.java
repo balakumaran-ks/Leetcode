@@ -17,6 +17,7 @@ class Solution {
     int sum = 0;
 
     void helper(TreeNode node,StringBuilder s){
+        if(node==null)return;
         //leaf node
         if(node.left==null && node.right==null){
             s.append(node.val);
@@ -28,13 +29,8 @@ class Solution {
         //do
         s.append(node.val);
 
-        //operation
-        if(node.left!=null){
-            helper(node.left,s);
-        }
-        if(node.right!=null){
-            helper(node.right,s);
-        }
+        helper(node.left,s);
+        helper(node.right,s);
 
         //undo
         s.deleteCharAt(s.length()-1);
