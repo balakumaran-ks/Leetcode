@@ -21,18 +21,22 @@ class Solution {
         if(node.left==null && node.right==null){
             s.append(node.val);
             //convert to decimal
-            int num = Integer.parseInt(s.toString(),2);
-            this.sum +=num;
+            this.sum += Integer.parseInt(s.toString(),2);
             s.deleteCharAt(s.length()-1);
             return;
         }
+        //do
         s.append(node.val);
+
+        //operation
         if(node.left!=null){
             helper(node.left,s);
         }
         if(node.right!=null){
             helper(node.right,s);
         }
+
+        //undo
         s.deleteCharAt(s.length()-1);
         return;
     }
