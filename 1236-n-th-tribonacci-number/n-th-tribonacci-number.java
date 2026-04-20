@@ -1,12 +1,15 @@
 class Solution {
-    //memoization -> top down approach
-    Map<Integer,Integer> map = new HashMap<>();
+    //bottom up approach -> tabulation
     public int tribonacci(int n) {
         if(n==0)return 0;
         if(n<=2)return 1;
-        if(map.containsKey(n))return map.get(n);
-        int res = tribonacci(n-1)+tribonacci(n-2)+tribonacci(n-3);
-        map.put(n,res);
-        return res;
+        int n1=0,n2=1,n3=1;
+        for(int i=3;i<=n;i++){
+            int temp = n1+n2+n3;
+            n1=n2;
+            n2=n3;
+            n3 = temp;
+        }
+        return n3;
     }
 }
