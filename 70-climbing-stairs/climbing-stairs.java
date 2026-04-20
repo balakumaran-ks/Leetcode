@@ -1,12 +1,14 @@
 class Solution {
-    //memoization
-    HashMap<Integer,Integer> map = new HashMap<>();
     public int climbStairs(int n) {
         if(n==1)return 1;
         if(n==2)return 2;
-        if(map.containsKey(n))return map.get(n);
-        int res = climbStairs(n-1)+climbStairs(n-2);
-        map.put(n,res);
-        return res;
+        int prev = 1;//first stair
+        int curr = 2;//second stair
+        for(int i=3;i<=n;i++){
+            int res = prev+curr;
+            prev = curr;
+            curr = res;
+        }
+        return curr;
     }
 }
