@@ -1,14 +1,14 @@
 class Solution {
     public int maxDistance(int[] colors) {
-        //constraints are small -> n^3 is acceptable
-        int n=colors.length;
+        //traverse the array and find the occurences of each different colors
+        //save the maximum distance
+        //return the maximum distance
+        int n = colors.length;
         int res = 0;
+        if(colors[0]!=colors[n-1])return n-1;
         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(colors[i]!=colors[j])
-                res = Math.max(res , Math.abs(i-j));
-                if(res==n-1)break;
-            }
+            if(colors[i]!=colors[0]||colors[i]!=colors[n-1])
+            res = Math.max(res,Math.max(i,n-i-1));
         }
         return res;
     }
