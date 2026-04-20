@@ -1,13 +1,14 @@
 class Solution {
-    //memory
-    HashMap<Integer,Integer> map = new HashMap<>();
-
+    //bottom up approach
     public int fib(int n) {
         if(n==0)return 0;
-        if(n==2 || n==1)return 1;
-        if(map.containsKey(n))return map.get(n);
-        int result = fib(n-1)+fib(n-2);
-        map.put(n,result);
-        return result;
+        int first = 0;
+        int second = 1;
+        for(int i=2;i<=n;i++){
+            int res = first+second;
+            first = second;
+            second = res;
+        }
+        return second;
     }
 }
