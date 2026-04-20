@@ -1,46 +1,32 @@
-class Solution {
-    List<List<Integer>> mem;
-    Solution(){
-        mem = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            List<Integer> row = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                // If it's the first or last element of the row, it's always 1
-                if (j == 0 || j == i) {
-                    row.add(1);
-                } else {
-                    // Standard DP: current = (prevRow, j-1) + (prevRow, j)
-                    int left = mem.get(i - 1).get(j - 1);
-                    int right = mem.get(i - 1).get(j);
-                    row.add(left + right);
-                }
-            }
-            mem.add(row);
-        }
-    }
+import java.util.ArrayList;
+import java.util.List;
 
+class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> res = new ArrayList<>();
-        
-        for (int i = 0; i < numRows; i++) {
-            if(i<this.mem.size()){
-                res.add(mem.get(i));
-            }else{
-                List<Integer> row = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                // If it's the first or last element of the row, it's always 1
-                if (j == 0 || j == i) {
-                    row.add(1);
-                } else {
-                    // Standard DP: current = (prevRow, j-1) + (prevRow, j)
-                    int left = res.get(i - 1).get(j - 1);
-                    int right = res.get(i - 1).get(j);
-                    row.add(left + right);
-                }
-            }
-            res.add(row);
-            }
+        List<List<Integer>> result = new ArrayList<>();
+        if (numRows == 0) {
+            return result;
         }
-        return res;
+
+        if (numRows == 1) {
+            List<Integer> firstRow = new ArrayList<>();
+            firstRow.add(1);
+            result.add(firstRow);
+            return result;
+        }
+
+        result = generate(numRows - 1);
+        List<Integer> prevRow = result.get(numRows - 2);
+        List<Integer> currentRow = new ArrayList<>();
+        currentRow.add(1);
+
+        for (int i = 1; i < numRows - 1; i++) {
+            currentRow.add(prevRow.get(i - 1) + prevRow.get(i));
+        }
+
+        currentRow.add(1);
+        result.add(currentRow);
+
+        return result;
     }
 }
