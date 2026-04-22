@@ -1,8 +1,13 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
-        int ans=0;
-        for(char a:Integer.toBinaryString(n).toCharArray())
-        if(a=='1')ans++;
-        return ans==1&&n>0;
+        //edge case 
+        if(n==0)return false;
+
+        //positive number
+        if(n>0){
+            return (n&(n-1))==0;
+        }
+
+        return false;
     }
 }
