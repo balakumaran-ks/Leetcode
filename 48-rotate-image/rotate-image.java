@@ -1,26 +1,26 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        int edgeLength = matrix.length;
-
-        int top = 0;
-        int bottom = edgeLength - 1;
-
-        while (top < bottom) {
-            for (int col = 0; col < edgeLength; col++) {
-                int temp = matrix[top][col];
-                matrix[top][col] = matrix[bottom][col];
-                matrix[bottom][col] = temp;
-            }
-            top++;
-            bottom--;
+        int n = matrix.length;
+        int topRow;
+        int bottomRow;
+        topRow = 0;
+        bottomRow = n-1;
+        // 1. Reverse Vertically (Swap Row 0 with Row N-1, etc.)
+        while (topRow < bottomRow) {
+            int[] temp = matrix[topRow]; // No need to .clone()
+            matrix[topRow] = matrix[bottomRow];
+            matrix[bottomRow] = temp;
+            topRow++;
+            bottomRow--;
         }
 
-        for (int row = 0; row < edgeLength; row++) {
-            for (int col = row + 1; col < edgeLength; col++) {
-                int temp = matrix[row][col];
-                matrix[row][col] = matrix[col][row];
-                matrix[col][row] = temp;
+        // 2. Transpose (Swap across the diagonal)
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) { // Start at i + 1 to avoid double-swapping
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
-        }        
+        }
     }
 }
