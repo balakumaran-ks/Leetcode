@@ -1,5 +1,4 @@
 class Solution {
-
     public boolean isValid(char[][] board,int row,int col,char num){
         for(int iter=0;iter<9;iter++){
             if(board[iter][col]==num)return false;
@@ -9,27 +8,28 @@ class Solution {
         return true;
     }
 
-   boolean wrapper(char[][] board) {
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            if (board[row][col] == '.') {
-                for (char num = '1'; num <= '9'; num++) {
-                    if (isValid(board, row, col, num)) {
-                        board[row][col] = num;
+
+    public boolean solve(char[][] board) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (board[i][j] == '.') {
+                for (char c = '1'; c <= '9'; c++) {
+                    if (isValid(board, i, j, c)) {
+                        board[i][j] = c; // Put the number
                         
-                        if (wrapper(board)) return true; // Move to next empty cell
+                        if (solve(board)) return true; // If it works, we're done!
                         
-                        board[row][col] = '.'; // Backtrack
+                        board[i][j] = '.'; // Otherwise, undo (backtrack)
                     }
                 }
-                return false; // Tried 1-9, none worked, go back and change previous cell
+                return false; // None of the numbers 1-9 worked here
             }
         }
     }
-    return true; // No empty cells left!
+    return true; // No empty cells left, Sudoku solved!
 }
 
     public void solveSudoku(char[][] board) {
-        wrapper(board);
+        solve(board);  
     }
 }
