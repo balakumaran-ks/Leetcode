@@ -1,17 +1,16 @@
 class Solution {
     public int[] countBits(int n) {
-        int[] res = new int[n+1];
-        res[0] = 0;
-        int power = 2;
-        for(int i=1;i<=n;i++){
-            if(i%2==1)res[i]=res[i-1]+1;
-            else if(i==power){
-                res[i]=1;
-                power*=2;
+        int[] dp = new int[n + 1];
+        int sub = 1;
+
+        for (int i = 1; i <= n; i++) {
+            if (sub * 2 == i) {
+                sub = i;
             }
-            else
-            res[i]=res[i-(power/2)]+1;
+
+            dp[i] = dp[i - sub] + 1;
         }
-        return res;
+
+        return dp;        
     }
 }
