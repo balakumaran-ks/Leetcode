@@ -3,9 +3,7 @@ class Solution {
         Arrays.sort(cost);
         int res = 0;
         for(int i=0;i<cost.length;i++){
-            if((i+1)%3==0){
-                ;
-            }else
+            if((i+1)%3!=0)
             res+=cost[cost.length-i-1];
         }
         return res;
