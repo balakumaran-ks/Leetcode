@@ -1,13 +1,10 @@
 class Solution:
     def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
         small = []
-        p = []
         large = []
         for num in nums:
             if num<pivot:
                 small.append(num)
-            elif num==pivot:
-                p.append(num)
-            else:
+            elif num>pivot:
                 large.append(num)
-        return small+p+large
+        return small+[pivot]*(len(nums)-(len(small)+len(large)))+large
