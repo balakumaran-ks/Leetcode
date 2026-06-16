@@ -15,7 +15,7 @@ class Solution {
             else if(c=='%'){
                 sb.reverse();
             }
-            else{
+            else if(c>='a'&&c<='z'){
                 sb.append(c);
             }
         }
