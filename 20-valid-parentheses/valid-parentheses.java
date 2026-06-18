@@ -10,7 +10,6 @@ class Solution {
                 if(stack.pop()!=c)return false;
             }
         }
-        if(stack.isEmpty()==false)return false;
-        return true;
+        return stack.isEmpty(); 
     }
 }
