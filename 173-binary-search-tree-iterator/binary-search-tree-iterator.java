@@ -15,31 +15,27 @@
  */
 class BSTIterator {
 
-    ArrayList<Integer> list;
-    int list_ind;
-
+    Stack<TreeNode> stack;
+    TreeNode node;
+    
     public BSTIterator(TreeNode root) {
-        list = new ArrayList<>();
-        list_ind=0;
-        Stack<TreeNode> nodeStack = new Stack<>();
-        TreeNode curr = root;
-        while(curr!=null || nodeStack.isEmpty()==false){
-            while(curr!=null){
-                nodeStack.push(curr);
-                curr = curr.left;
-            }
-            curr = nodeStack.pop();
-            list.add(curr.val);
-            curr = curr.right;
-        }
+        stack = new Stack<>();
+        node=root;
     }
     
     public int next() {
-        return list.get(list_ind++);
+        while(node!=null){
+            stack.push(node);
+            node = node.left;
+        }
+        node = stack.pop();
+        int val = node.val;
+        node = node.right;
+        return val;
     }
     
     public boolean hasNext() {
-        return list_ind<list.size();
+        return stack.size()>0 || node!=null;
     }
 }
 
