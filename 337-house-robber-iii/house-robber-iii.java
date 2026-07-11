@@ -13,31 +13,17 @@
  *     }
  * }
  */
-
-class Pair{
-    int skip;
-    int take;
-    Pair(int a,int b){
-        skip = a;
-        take = b;
-    }
-}
-
 class Solution {
-
-    public Pair solve(TreeNode node){
-        if(node==null)return new Pair(0,0);
-        Pair left = solve(node.left);
-        Pair right = solve(node.right);
-
-        int take = node.val+left.skip+right.skip;
-        int skip = Math.max(left.take,left.skip)+Math.max(right.take,right.skip);
-
-        return new Pair(skip,take);
-    }
-
     public int rob(TreeNode root) {
-        Pair res = solve(root);
-        return Math.max(res.skip , res.take);
+        int[] ans = dfs(root);
+        return Math.max(ans[0], ans[1]);
+    }
+    private int[] dfs(TreeNode node){
+        if(node == null) return new int[]{0, 0};
+        int[] left = dfs(node.left);
+        int[] right = dfs(node.right);
+        int rob = node.val + left[1] + right[1];
+        int notRob = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new int[]{rob, notRob};
     }
 }
