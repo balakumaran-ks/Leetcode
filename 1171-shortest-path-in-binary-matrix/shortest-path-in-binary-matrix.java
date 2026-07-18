@@ -10,7 +10,7 @@ class Solution {
         boolean[][] visited = new boolean[n][n];
         visited[0][0] = true;
         int[][] dist = new int[n][n];
-        Queue<int[]> queue = new LinkedList<>();
+        Queue<int[]> queue = new ArrayDeque<>();
         queue.add(new int[]{0,0});
         while(!queue.isEmpty()){
             int[] arr = queue.poll(); // arr = [row , col]
