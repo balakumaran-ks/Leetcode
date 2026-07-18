@@ -10,10 +10,10 @@ class Solution {
         boolean[][] visited = new boolean[n][n];
         visited[0][0] = true;
         int[][] dist = new int[n][n];
-        Queue<Integer[]> queue = new LinkedList<>();
-        queue.add(new Integer[]{0,0});
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{0,0});
         while(!queue.isEmpty()){
-            Integer[] arr = queue.poll(); // arr = [row , col]
+            int[] arr = queue.poll(); // arr = [row , col]
             int r = arr[0];
             int c = arr[1];
             for(int i=0;i<8;i++){
@@ -22,7 +22,7 @@ class Solution {
                 if(x>=0 && x<n && y>=0 && y<n && grid[x][y]==0 && !visited[x][y]){
                     visited[x][y] = true;
                     dist[x][y] = dist[r][c]+1;
-                    queue.add(new Integer[]{x,y});
+                    queue.add(new int[]{x,y});
                 }
             }
         }
