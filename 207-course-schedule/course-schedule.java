@@ -12,16 +12,16 @@ class Solution {
         }
 
         Queue<Integer> queue = new ArrayDeque<>();
-        List<Integer> order = new ArrayList<>();
+        int res = 0;
         for(int i=0;i<n;i++)if(indeg[i]==0)queue.add(i);
 
         while(!queue.isEmpty()){
             int u = queue.poll();
-            order.add(u);
+            res++;
             for(int v:adjList[u]){
                 if(--indeg[v]==0)queue.add(v);
             }
         }
-        return order.size()==n;
+        return res==n;
     }
 }
