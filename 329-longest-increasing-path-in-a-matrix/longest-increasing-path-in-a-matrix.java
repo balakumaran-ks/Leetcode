@@ -6,12 +6,12 @@ class Solution {
     public int dfs(int[][] adj , int r , int c){
         if(memo[r][c]!=0)return memo[r][c];
         memo[r][c]=1;
-        int m = adj.length;
-        int n = adj[0].length;
+        // int m = ;
+        // int n = ;
         for(int d=0;d<4;d++){
             int nr = r + dx[d];
             int nc = c + dy[d];
-            if(nr>=0 && nr < m && nc>=0 && nc < n && adj[nr][nc]>adj[r][c]){
+            if(nr>=0 && nr < adj.length && nc>=0 && nc < adj[0].length && adj[nr][nc]>adj[r][c]){
                 memo[r][c] = Math.max(memo[r][c],1+dfs(adj,nr,nc));
             }
         }
