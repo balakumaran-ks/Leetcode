@@ -18,9 +18,7 @@ class Solution {
         for(int[] edge:times){
             adj[edge[0]][edge[1]] = edge[2];
         }
-        for(int[] a:adj)System.out.println(Arrays.toString(a));
         dfs(adj , k , dist);
-        System.out.println(Arrays.toString(dist));
         int res = Integer.MIN_VALUE;
         for(int d=1;d<=n;d++){
             if(dist[d]==Integer.MAX_VALUE)return -1;
