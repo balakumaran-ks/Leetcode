@@ -21,17 +21,20 @@ class Solution {
         for(int i=0;i<26;i++){
             if(small[i]!=0){
                 char c =(char) ('a'+ i);
-                for(int j=0;j<small[i];j++)list.add(new Ele(c,small[i]));
+                Ele obj = new Ele(c,small[i]);
+                for(int j=0;j<small[i];j++)list.add(obj);
             }
             if(caps[i]!=0){
                 char c = (char)(i+'A');
-                for(int j=0;j<caps[i];j++)list.add(new Ele(c,caps[i]));
+                Ele obj = new Ele(c,caps[i]);
+                for(int j=0;j<caps[i];j++)list.add(obj);
             }
         }
         for(int i=0;i<10;i++){
             if(digits[i]!=0){
                 char c = (char)('0'+i);
-                for(int j=0;j<digits[i];j++)list.add(new Ele(c,digits[i]));
+                Ele obj = new Ele(c,digits[i]);
+                for(int j=0;j<digits[i];j++)list.add(obj);
             }
         }
 
