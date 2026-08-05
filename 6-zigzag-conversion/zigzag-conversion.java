@@ -12,7 +12,7 @@ class Solution {
             }
             i-=2;
             while(index<n && i>=0){
-                arr[i--]+=Character.toString(s.charAt(index++));
+                arr[i--]+=s.substring(index++,index);
             }
             i+=2;
         }
