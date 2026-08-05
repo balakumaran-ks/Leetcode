@@ -8,7 +8,7 @@ class Solution {
         int i = 0;
         while(index<n){
             while(index<n && i!=numRows){
-                arr[i++]+=Character.toString(s.charAt(index++));
+                arr[i++]+=s.substring(index++,index);
             }
             i-=2;
             while(index<n && i>=0){
