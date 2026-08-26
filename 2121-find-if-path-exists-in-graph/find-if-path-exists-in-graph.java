@@ -1,33 +1,27 @@
 class Solution {
-    public boolean validPath(int n, int[][] edges, int source, int destination) {
-        if (source == destination) return true;
-
-        // 1. Build Adjacency List
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        for (int[] edge : edges) {
+    public boolean validPath(int n, int[][] edges, int src, int des) {
+        //building adjList
+        List<List<Integer>> adjList = new ArrayList<>();
+        for(int i=0;i<n;i++)adjList.add(new ArrayList<>());
+        for(int[] edge:edges){
             int u = edge[0];
             int v = edge[1];
-            map.computeIfAbsent(u, k -> new ArrayList<>()).add(v);
-            map.computeIfAbsent(v, k -> new ArrayList<>()).add(u);
+            adjList.get(u).add(v);
+            adjList.get(v).add(u);
         }
 
-        // 2. BFS Setup
-        Queue<Integer> que = new ArrayDeque<>();
+        //template
         boolean[] visited = new boolean[n];
-
-        que.offer(source);
-        visited[source] = true;
-
-        // 3. Traverse
-        while (!que.isEmpty()) {
-            int ele = que.poll();
-            
-            if (ele == destination) return true;
-
-            for (int neighbor : map.getOrDefault(ele, new ArrayList<>())) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    que.offer(neighbor);
+        Queue<Integer> q = new LinkedList<>();
+        q.add(src);
+        visited[src] = true;
+        while(!q.isEmpty()){
+            int u = q.poll();
+            if(u==des)return true;
+            for(int v:adjList.get(u)){
+                if(!visited[v]){
+                    visited[v] = true;
+                    q.add(v);
                 }
             }
         }
